@@ -1,6 +1,7 @@
 #include "../../include/utils/fileio.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/utils/config.h"
 
 // Reading and Writing to a file
 // r - Read, Write - w, Read & Write - w+, Append - a
@@ -39,4 +40,27 @@ void close_files(FILE *file[], int size){
             fprintf(stderr, "Error closing file\n");
         }
     }
+}
+
+void init_state(const char* filename, char** state){
+    FILE *file = open_file(filename, "r");
+    if(file == NULL) {
+        fprintf(stderr, "Error opening file: %s\n", filename);
+        return;
+    };
+    int c;
+    for (size_t i = 0; i < STATE_SIZE; i++){
+        for (size_t j = 0; j < STATE_SIZE; j++){
+            c = fgetc(file);
+            if(c == EOF){
+                fprintf(stderr, "Warning: File %s has fewer characters than needed to fill the state.\n", filename);
+                fclose(file);
+                return;
+            }
+            else{
+                state[i][j] = (char)c;
+            }
+        }  
+    } 
+    fclose(file);
 }

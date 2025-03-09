@@ -1,6 +1,10 @@
 #include "../include/utils/fileio.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/utils/config.h"
+#include "../include/utils/failures.h"
+
+#define STATE_SIZE 4
 
 // stderr is a standard error stream in C, 
 // which is used to output error messages. 
@@ -13,31 +17,46 @@
 // or terminates unexpectedly
 
 int main(int argc, const char* argv[]) {
-    if (argc != 3) {
-        fprintf(stderr, "Usage: %s <source_file> <destination_file>\n", argv[0]);
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <source_file>\n", argv[0]);
         return EXIT_FAILURE;
     }
 
     FILE *source_file = NULL;
     FILE *destination_file = NULL;
     int status = EXIT_SUCCESS;
-
-    source_file = open_file(argv[1], "r");
-    if (source_file == NULL) {
+    
+    char **state;
+    state = (char** )malloc(STATE_SIZE * sizeof(char*));
+    if (state == NULL) {
+        fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
         return EXIT_FAILURE;
     }
 
-    destination_file = open_file(argv[2], "w");
-    if (destination_file == NULL) {
-        fclose(source_file);
-        return EXIT_FAILURE;
+    for (size_t i = 0; i < STATE_SIZE; i++)
+    {
+        state[i] = (char*)malloc(STATE_SIZE * sizeof(char));
+        if(state[i] == NULL){
+            fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+            for (size_t j = 0; j < i; j++) {
+                free(state[j]);
+            }
+            free(state);
+            return EXIT_FAILURE;
+        }
+    }
+    
+    init_state(argv[1], state);
+
+    for(int i = 0; i < STATE_SIZE; i++){
+        for(int j = 0; j < STATE_SIZE; j++){
+            printf("%c", state[i][j]);
+        }
     }
 
-    flush_stream(source_file);
-    copy_file(source_file, destination_file);
-    
-    FILE *files[] = {source_file, destination_file};
-    close_files(files, 2);
-    
+    for (size_t i = 0; i < STATE_SIZE; i++) {
+        free(state[i]);
+    }
+    free(state);
     return status;
 }

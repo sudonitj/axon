@@ -1,8 +1,11 @@
 #include "../include/utils/fileio.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../include/utils/config.h"
 #include "../include/utils/failures.h"
+#include "../include/utils/memory.h"
+#include "../include/utils/password.h"
 
 #define STATE_SIZE 4
 
@@ -17,8 +20,8 @@
 // or terminates unexpectedly
 
 int main(int argc, const char* argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <source_file>\n", argv[0]);
+    if (argc != 3) {
+        fprintf(stderr, "Usage: %s <source_file> <key>\n", argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -26,37 +29,21 @@ int main(int argc, const char* argv[]) {
     FILE *destination_file = NULL;
     int status = EXIT_SUCCESS;
     
-    char **state;
-    state = (char** )malloc(STATE_SIZE * sizeof(char*));
-    if (state == NULL) {
-        fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
-        return EXIT_FAILURE;
-    }
-
-    for (size_t i = 0; i < STATE_SIZE; i++)
-    {
-        state[i] = (char*)malloc(STATE_SIZE * sizeof(char));
-        if(state[i] == NULL){
-            fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
-            for (size_t j = 0; j < i; j++) {
-                free(state[j]);
-            }
-            free(state);
-            return EXIT_FAILURE;
-        }
-    }
+    char **state = allocate_state_memory(STATE_SIZE, STATE_SIZE);
     
     init_state(argv[1], state);
 
-    for(int i = 0; i < STATE_SIZE; i++){
-        for(int j = 0; j < STATE_SIZE; j++){
-            printf("%c", state[i][j]);
-        }
-    }
+    // for(int i = 0; i < STATE_SIZE; i++){
+    //     for(int j = 0; j < STATE_SIZE; j++){
+    //         printf("%c", state[i][j]);
+    //     }
+    // }
+    char* final_pass = validate_password(argv[2]);
 
-    for (size_t i = 0; i < STATE_SIZE; i++) {
-        free(state[i]);
+    printf("\nFinal password length: %zu\n", strlen(final_pass));
+    for (size_t i = 0; i < strlen(final_pass); i++) {
+        printf("char[%zu]: '%c' (ASCII: %d)\n", i, final_pass[i], (int)final_pass[i]);
     }
-    free(state);
+    free_state_memory(state, STATE_SIZE);
     return status;
 }

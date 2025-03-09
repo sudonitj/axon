@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/a.dir/src/main.c.o CMakeFiles/a.dir/lib/utils/fileio.c.o -o a 
+/usr/bin/cc CMakeFiles/a.dir/src/main.c.o CMakeFiles/a.dir/lib/utils/fileio.c.o CMakeFiles/a.dir/lib/utils/memory.c.o CMakeFiles/a.dir/lib/utils/password.c.o -o a 

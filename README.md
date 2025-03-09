@@ -1,2 +1,2 @@
 # AES
-Writing Advanced Encryption Standard alogrithm on raw metal using C.
+Writing Advanced Encryption Standard algorithm on raw metal using C.

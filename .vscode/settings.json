@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.md": "snippets",
         "stdio.h": "c",
         "array": "c",
         "atomic": "c",
@@ -42,7 +43,8 @@
         "ostream": "c",
         "stdexcept": "c",
         "streambuf": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "password.h": "c"
     },
     "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,

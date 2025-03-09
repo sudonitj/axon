@@ -53,8 +53,7 @@ void init_state(const char* filename, char** state){
         for (size_t j = 0; j < STATE_SIZE; j++){
             c = fgetc(file);
             if(c == EOF){
-                fprintf(stderr, "Warning: File %s has fewer characters than needed to fill the state.\n", filename);
-                fclose(file);
+                state[i][j] = 0;
                 return;
             }
             else{

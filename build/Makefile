@@ -198,6 +198,54 @@ lib/utils/fileio.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/fileio.c.s
 .PHONY : lib/utils/fileio.c.s
 
+lib/utils/memory.o: lib/utils/memory.c.o
+.PHONY : lib/utils/memory.o
+
+# target to build an object file
+lib/utils/memory.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/memory.c.o
+.PHONY : lib/utils/memory.c.o
+
+lib/utils/memory.i: lib/utils/memory.c.i
+.PHONY : lib/utils/memory.i
+
+# target to preprocess a source file
+lib/utils/memory.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/memory.c.i
+.PHONY : lib/utils/memory.c.i
+
+lib/utils/memory.s: lib/utils/memory.c.s
+.PHONY : lib/utils/memory.s
+
+# target to generate assembly for a file
+lib/utils/memory.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/memory.c.s
+.PHONY : lib/utils/memory.c.s
+
+lib/utils/password.o: lib/utils/password.c.o
+.PHONY : lib/utils/password.o
+
+# target to build an object file
+lib/utils/password.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/password.c.o
+.PHONY : lib/utils/password.c.o
+
+lib/utils/password.i: lib/utils/password.c.i
+.PHONY : lib/utils/password.i
+
+# target to preprocess a source file
+lib/utils/password.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/password.c.i
+.PHONY : lib/utils/password.c.i
+
+lib/utils/password.s: lib/utils/password.c.s
+.PHONY : lib/utils/password.s
+
+# target to generate assembly for a file
+lib/utils/password.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/password.c.s
+.PHONY : lib/utils/password.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -238,6 +286,12 @@ help:
 	@echo "... lib/utils/fileio.o"
 	@echo "... lib/utils/fileio.i"
 	@echo "... lib/utils/fileio.s"
+	@echo "... lib/utils/memory.o"
+	@echo "... lib/utils/memory.i"
+	@echo "... lib/utils/memory.s"
+	@echo "... lib/utils/password.o"
+	@echo "... lib/utils/password.i"
+	@echo "... lib/utils/password.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

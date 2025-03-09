@@ -10,6 +10,8 @@ include_directories(include)
 add_executable(a 
     src/main.c
     lib/utils/fileio.c
+    lib/utils/memory.c
+    lib/utils/password.c
 )
 
 install(TARGETS a DESTINATION bin)

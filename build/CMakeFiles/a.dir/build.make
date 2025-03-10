@@ -111,26 +111,71 @@ CMakeFiles/a.dir/lib/utils/memory.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/lib/utils/memory.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/utils/memory.c -o CMakeFiles/a.dir/lib/utils/memory.c.s
 
-CMakeFiles/a.dir/lib/utils/password.c.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/lib/utils/password.c.o: ../lib/utils/password.c
-CMakeFiles/a.dir/lib/utils/password.c.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/a.dir/lib/utils/password.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/lib/utils/password.c.o -MF CMakeFiles/a.dir/lib/utils/password.c.o.d -o CMakeFiles/a.dir/lib/utils/password.c.o -c /home/rishi/CPrograms/lib/utils/password.c
+CMakeFiles/a.dir/lib/crypto/password.c.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/lib/crypto/password.c.o: ../lib/crypto/password.c
+CMakeFiles/a.dir/lib/crypto/password.c.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/a.dir/lib/crypto/password.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/lib/crypto/password.c.o -MF CMakeFiles/a.dir/lib/crypto/password.c.o.d -o CMakeFiles/a.dir/lib/crypto/password.c.o -c /home/rishi/CPrograms/lib/crypto/password.c
 
-CMakeFiles/a.dir/lib/utils/password.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/lib/utils/password.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/utils/password.c > CMakeFiles/a.dir/lib/utils/password.c.i
+CMakeFiles/a.dir/lib/crypto/password.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/lib/crypto/password.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/crypto/password.c > CMakeFiles/a.dir/lib/crypto/password.c.i
 
-CMakeFiles/a.dir/lib/utils/password.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/lib/utils/password.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/utils/password.c -o CMakeFiles/a.dir/lib/utils/password.c.s
+CMakeFiles/a.dir/lib/crypto/password.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/lib/crypto/password.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/crypto/password.c -o CMakeFiles/a.dir/lib/crypto/password.c.s
+
+CMakeFiles/a.dir/lib/crypto/encryptor.c.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/lib/crypto/encryptor.c.o: ../lib/crypto/encryptor.c
+CMakeFiles/a.dir/lib/crypto/encryptor.c.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/a.dir/lib/crypto/encryptor.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/lib/crypto/encryptor.c.o -MF CMakeFiles/a.dir/lib/crypto/encryptor.c.o.d -o CMakeFiles/a.dir/lib/crypto/encryptor.c.o -c /home/rishi/CPrograms/lib/crypto/encryptor.c
+
+CMakeFiles/a.dir/lib/crypto/encryptor.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/lib/crypto/encryptor.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/crypto/encryptor.c > CMakeFiles/a.dir/lib/crypto/encryptor.c.i
+
+CMakeFiles/a.dir/lib/crypto/encryptor.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/lib/crypto/encryptor.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/crypto/encryptor.c -o CMakeFiles/a.dir/lib/crypto/encryptor.c.s
+
+CMakeFiles/a.dir/lib/crypto/decryptor.c.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/lib/crypto/decryptor.c.o: ../lib/crypto/decryptor.c
+CMakeFiles/a.dir/lib/crypto/decryptor.c.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/a.dir/lib/crypto/decryptor.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/lib/crypto/decryptor.c.o -MF CMakeFiles/a.dir/lib/crypto/decryptor.c.o.d -o CMakeFiles/a.dir/lib/crypto/decryptor.c.o -c /home/rishi/CPrograms/lib/crypto/decryptor.c
+
+CMakeFiles/a.dir/lib/crypto/decryptor.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/lib/crypto/decryptor.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/crypto/decryptor.c > CMakeFiles/a.dir/lib/crypto/decryptor.c.i
+
+CMakeFiles/a.dir/lib/crypto/decryptor.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/lib/crypto/decryptor.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/crypto/decryptor.c -o CMakeFiles/a.dir/lib/crypto/decryptor.c.s
+
+CMakeFiles/a.dir/lib/utils/conversion.c.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/lib/utils/conversion.c.o: ../lib/utils/conversion.c
+CMakeFiles/a.dir/lib/utils/conversion.c.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/a.dir/lib/utils/conversion.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/lib/utils/conversion.c.o -MF CMakeFiles/a.dir/lib/utils/conversion.c.o.d -o CMakeFiles/a.dir/lib/utils/conversion.c.o -c /home/rishi/CPrograms/lib/utils/conversion.c
+
+CMakeFiles/a.dir/lib/utils/conversion.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/lib/utils/conversion.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/utils/conversion.c > CMakeFiles/a.dir/lib/utils/conversion.c.i
+
+CMakeFiles/a.dir/lib/utils/conversion.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/lib/utils/conversion.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/utils/conversion.c -o CMakeFiles/a.dir/lib/utils/conversion.c.s
 
 # Object files for target a
 a_OBJECTS = \
 "CMakeFiles/a.dir/src/main.c.o" \
 "CMakeFiles/a.dir/lib/utils/fileio.c.o" \
 "CMakeFiles/a.dir/lib/utils/memory.c.o" \
-"CMakeFiles/a.dir/lib/utils/password.c.o"
+"CMakeFiles/a.dir/lib/crypto/password.c.o" \
+"CMakeFiles/a.dir/lib/crypto/encryptor.c.o" \
+"CMakeFiles/a.dir/lib/crypto/decryptor.c.o" \
+"CMakeFiles/a.dir/lib/utils/conversion.c.o"
 
 # External object files for target a
 a_EXTERNAL_OBJECTS =
@@ -138,10 +183,13 @@ a_EXTERNAL_OBJECTS =
 a : CMakeFiles/a.dir/src/main.c.o
 a : CMakeFiles/a.dir/lib/utils/fileio.c.o
 a : CMakeFiles/a.dir/lib/utils/memory.c.o
-a : CMakeFiles/a.dir/lib/utils/password.c.o
+a : CMakeFiles/a.dir/lib/crypto/password.c.o
+a : CMakeFiles/a.dir/lib/crypto/encryptor.c.o
+a : CMakeFiles/a.dir/lib/crypto/decryptor.c.o
+a : CMakeFiles/a.dir/lib/utils/conversion.c.o
 a : CMakeFiles/a.dir/build.make
 a : CMakeFiles/a.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable a"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/a.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

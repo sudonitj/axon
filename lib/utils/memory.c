@@ -1,8 +1,8 @@
 #include "../../include/utils/memory.h"
-#include "../../include/utils/failures.h"
+#include "../../include/common/failures.h"
 #include <stdio.h>
 
-char** allocate_state_memory(size_t rows, size_t cols){
+char** allocate_matrix_memory(size_t rows, size_t cols){
     char** state;
     state = (char**)malloc(rows * sizeof(char*));
     if(state == NULL){
@@ -23,7 +23,7 @@ char** allocate_state_memory(size_t rows, size_t cols){
     return state;
 }
 
-void free_state_memory(char** state, size_t rows){
+void free_matrix_memory(char** state, size_t rows){
     if (state == NULL) return;
     
     for (size_t i = 0; i < rows; i++) {

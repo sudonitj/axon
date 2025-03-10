@@ -1,7 +1,8 @@
 #include "../../include/utils/fileio.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/utils/config.h"
+#include "../include/common/config.h"
+#include "../include/common/failures.h"
 
 // Reading and Writing to a file
 // r - Read, Write - w, Read & Write - w+, Append - a
@@ -12,6 +13,40 @@ FILE* open_file(const char* filename, const char* mode){
     // When the open_file() function returns, only the local variable file is destroyed, but the actual FILE structure in heap memory remains intact
     if(file == NULL) fprintf(stderr, "Error opening file: %s\n", filename);
     return file;
+}
+
+char* read_file(const char* filename){
+    FILE *file = open_file(filename, "r");
+    if(file == NULL) return NULL;
+
+    size_t buffer_size = 1024;
+    size_t used_size = 0;
+
+    char* buffer = (char*)malloc(buffer_size);
+    if(buffer == NULL){
+        fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+        fclose(file);
+        return NULL;
+    }
+
+    int c = 0;
+    while((c=fgetc(file)) != EOF){
+        if(used_size + 1 >= buffer_size){
+            buffer_size *= 2;
+            char* new_buffer = (char*)realloc(buffer, buffer_size);
+            if(new_buffer == NULL){
+                fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+                free(buffer);
+                fclose(file);
+                return NULL;
+            }
+            buffer = new_buffer;
+        }
+        buffer[used_size++] = (char)c;
+    }
+    buffer[used_size++] = '\0';
+    fclose(file);
+    return buffer;
 }
 
 void flush_stream(FILE *file){
@@ -40,6 +75,15 @@ void close_files(FILE *file[], int size){
             fprintf(stderr, "Error closing file\n");
         }
     }
+}
+
+void write_file(const char* filename, const char* content, const int content_size){
+    FILE *file = open_file(filename, "w");
+    if(file == NULL) return;
+    for (size_t i = 0; i < content_size; i++){
+        fputc(content[i], file);
+    }
+    fclose(file);
 }
 
 void init_state(const char* filename, char** state){

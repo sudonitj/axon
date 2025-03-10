@@ -1,6 +1,6 @@
-#include "../include/utils/failures.h"
-#include "../include/utils/password.h"
-#include "../include/utils/config.h"
+#include "../include/common/failures.h"
+#include "../include/crypto/password.h"
+#include "../include/common/config.h"
 #include <string.h>
 #include <stdlib.h>
 

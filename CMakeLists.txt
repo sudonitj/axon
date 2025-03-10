@@ -11,7 +11,10 @@ add_executable(a
     src/main.c
     lib/utils/fileio.c
     lib/utils/memory.c
-    lib/utils/password.c
+    lib/crypto/password.c
+    lib/crypto/encryptor.c
+    lib/crypto/decryptor.c
+    lib/utils/conversion.c
 )
 
 install(TARGETS a DESTINATION bin)

@@ -44,7 +44,11 @@
         "stdexcept": "c",
         "streambuf": "c",
         "typeinfo": "c",
-        "password.h": "c"
+        "password.h": "c",
+        "failures.h": "c",
+        "conversion.h": "c",
+        "encyrptor.h": "c",
+        "encryptor.h": "c"
     },
     "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,

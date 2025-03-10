@@ -1,5 +1,5 @@
-#ifndef UTILS_CONFIG_H
-#define UTILS_CONFIG_H
+#ifndef COMMON_CONFIG_H
+#define COMMON_CONFIG_H
 
 #define STATE_SIZE 4
 #define DEFAULT_INPUT_PATH "./input"

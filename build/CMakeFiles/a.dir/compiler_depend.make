@@ -305,7 +305,20 @@ CMakeFiles/a.dir/lib/utils/fileio.c.o: ../lib/utils/fileio.c \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   ../include/common/config.h \
-  ../include/common/failures.h
+  ../include/common/failures.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h
 
 CMakeFiles/a.dir/lib/utils/memory.c.o: ../lib/utils/memory.c \
   /usr/include/stdc-predef.h \
@@ -436,6 +449,16 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
 
 ../lib/utils/memory.c:
 
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
 ../include/utils/fileio.h:
 
 ../lib/utils/conversion.c:
@@ -510,6 +533,8 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
+/usr/include/linux/limits.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
@@ -521,6 +546,8 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/features-time64.h:
 
@@ -552,9 +579,13 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/limits.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 

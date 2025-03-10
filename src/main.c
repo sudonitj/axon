@@ -25,10 +25,10 @@
 
 
 int main(int argc, const char* argv[]) {
-    if (argc != 5) {
-        fprintf(stderr, "Usage: %s <source_file> <destination_file> <key> <e/d>\n", argv[0]);
-        return EXIT_FAILURE;
-    }
+    // if (argc != 5) {
+    //     fprintf(stderr, "Usage: %s <source_file> <destination_file> <key> <e/d>\n", argv[0]);
+    //     return EXIT_FAILURE;
+    // }
 
     FILE *source_file = NULL;
     FILE *destination_file = NULL;
@@ -70,25 +70,28 @@ int main(int argc, const char* argv[]) {
     // free_matrix_memory(password, STATE_SIZE);
     // free_matrix_memory(state, STATE_SIZE);
 
-    if(strcmp(argv[4], "e") == 0){
-        // perform encryption of argv[1] with argv[3] and write to argv[2]
-        char** state = allocate_matrix_memory(STATE_SIZE, STATE_SIZE);
-        init_state(argv[1], state);
-        char* final_pass = validate_password(argv[3]);
-        char* encrypted_content = encryptor(state, final_pass, STATE_SIZE);
-        write_file(argv[2], encrypted_content, STATE_SIZE * STATE_SIZE * 2);
-    }
-    else if(strcmp(argv[4], "d") == 0){
-        // perform decryption of argv[1] with argv[3] and write to argv[2]
-        char* encrypted_content = read_file(argv[1]);
-        char* final_pass = validate_password(argv[3]);
-        char* decrypted_flat_state = decryptor(encrypted_content, final_pass, STATE_SIZE);
-        write_file(argv[2], decrypted_flat_state, STATE_SIZE * STATE_SIZE);
-    }
-    else{
-        printf("%s\n\n\n", argv[4]);
-        fprintf(stderr, "Invalid operation\n");
-        status = EXIT_FAILURE;
-    }
+    char*** states = file_chunker(argv[1]);
+    
+
+    // if(strcmp(argv[4], "e") == 0){
+    //     // perform encryption of argv[1] with argv[3] and write to argv[2]
+    //     char** state = allocate_matrix_memory(STATE_SIZE, STATE_SIZE);
+    //     init_state(argv[1], state);
+    //     char* final_pass = validate_password(argv[3]);
+    //     char* encrypted_content = encryptor(state, final_pass, STATE_SIZE);
+    //     write_file(argv[2], encrypted_content, STATE_SIZE * STATE_SIZE * 2);
+    // }
+    // else if(strcmp(argv[4], "d") == 0){
+    //     // perform decryption of argv[1] with argv[3] and write to argv[2]
+    //     char* encrypted_content = read_file(argv[1]);
+    //     char* final_pass = validate_password(argv[3]);
+    //     char* decrypted_flat_state = decryptor(encrypted_content, final_pass, STATE_SIZE);
+    //     write_file(argv[2], decrypted_flat_state, STATE_SIZE * STATE_SIZE);
+    // }
+    // else{
+    //     printf("%s\n\n\n", argv[4]);
+    //     fprintf(stderr, "Invalid operation\n");
+    //     status = EXIT_FAILURE;
+    // }
     return status;
 }

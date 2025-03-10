@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include "../include/common/config.h"
 #include "../include/common/failures.h"
+#include "../include/utils/memory.h"
+#include <limits.h>
+#include <string.h>
 
 // Reading and Writing to a file
 // r - Read, Write - w, Read & Write - w+, Append - a
@@ -106,4 +109,91 @@ void init_state(const char* filename, char** state){
         }  
     } 
     fclose(file);
+}
+
+void init_state_from_contents(const char* contents, char** state){
+    for (size_t i = 0; i < STATE_SIZE; i++)
+    {
+        for (size_t j = 0; j < STATE_SIZE; j++){
+            state[i][j] = contents[i * STATE_SIZE + j];
+        }
+    }
+}
+
+
+char*** file_chunker(const char* filename){
+    char* file_contents = read_file("../text.txt");
+    int buffer = DEFAULT_BUFFER;
+
+    size_t file_length = strlen(file_contents);
+    size_t block_size = STATE_SIZE * STATE_SIZE;
+    size_t num_blocks = (file_length + block_size - 1) / block_size;
+
+    char* current_position = file_contents;
+
+    size_t i = 0;
+    char*** states = malloc(buffer * sizeof(char**));
+    if (!states) {
+        fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+        free(file_contents);
+        return NULL;
+    }
+
+    size_t remaining_length = strlen(file_contents);
+    
+    while(remaining_length > 0){
+        if (i > buffer) {
+            if (buffer > INT_MAX / 2) {
+                fprintf(stderr, "Buffer size too large to double\n");
+                return NULL;
+            }
+            int new_buffer = buffer * 2;
+            printf("expanding buffer from %d to %d\n", buffer, new_buffer);
+            char*** new_states = realloc(states, new_buffer * sizeof(char**));
+            if (!new_states) {
+                fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+                for (size_t j = 0; j < i; j++) {
+                    free_matrix_memory(states[j], STATE_SIZE);
+                }
+                free(states);
+                free(file_contents);
+                return NULL;
+            }
+            buffer = new_buffer;
+            states = new_states;
+        }
+        char** state = allocate_matrix_memory(STATE_SIZE, STATE_SIZE);
+        if (!state) {
+            fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+            for (size_t j = 0; j < i; j++) {
+                free_matrix_memory(states[j], STATE_SIZE);
+            }
+            free(file_contents);
+            return NULL;
+        }
+
+        init_state_from_contents(current_position, state);
+        states[i++] = state;
+        current_position += block_size;
+        if(remaining_length > block_size){
+            remaining_length -= block_size;
+        }else{
+            remaining_length = 0;
+        }
+        if (*current_position == '\0') break;
+    }
+
+    for (size_t l = 0; l < i; l++)
+    {
+        // printf("%p\n", states[l]);
+        for (size_t j = 0; j < STATE_SIZE; j++)
+        {
+            for (size_t k = 0; k < STATE_SIZE; k++)
+            {
+                printf("%c", (states[l])[j][k]);
+            }
+        }
+        printf("\n");
+    }
+    return states;
 }

@@ -55,7 +55,9 @@
         "transformation_config.h": "c",
         "hash_map": "c",
         "diffusion.h": "c",
-        "decryptor.h": "c"
+        "decryptor.h": "c",
+        "password_simd.h": "c",
+        "optimization.h": "c"
     },
     "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,

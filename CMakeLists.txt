@@ -5,6 +5,35 @@ project(axon VERSION 1.0.0 LANGUAGES C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+# Option to enable SIMD optimizations (default ON)
+option(ENABLE_SIMD "Enable SIMD optimizations" ON)
+
+# Configure compiler flags based on platform and optimization settings
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+    # Common flags for GCC/Clang
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
+    
+    # Optimization flags
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3")
+    
+    # SIMD flags
+    if(ENABLE_SIMD)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=native")
+        add_definitions(-DUSE_SIMD)
+        message(STATUS "SIMD optimizations enabled. Using -march=native")
+    endif()
+elseif(MSVC)
+    # Microsoft Visual C++ compiler flags
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
+    
+    # SIMD flags for MSVC
+    if(ENABLE_SIMD)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /arch:AVX2")
+        add_definitions(-DUSE_SIMD)
+        message(STATUS "SIMD optimizations enabled. Using /arch:AVX2")
+    endif()
+endif()
+
 # Windows cross-compilation only if WINDOWS_BUILD is defined
 if(DEFINED WINDOWS_BUILD)
     message(STATUS "Configuring for Windows cross-compilation")
@@ -50,19 +79,33 @@ add_library(axon_lib STATIC ${LIB_SOURCES})
 add_executable(axon ${MAIN_SOURCES})
 target_link_libraries(axon axon_lib m)
 
+# Build optimized version if SIMD is enabled
+if(ENABLE_SIMD)
+    add_executable(axon_optimized ${MAIN_SOURCES})
+    target_link_libraries(axon_optimized axon_lib m)
+    target_compile_definitions(axon_optimized PRIVATE USE_SIMD=1)
+endif()
+
 # Windows executable needs .exe suffix
 if(DEFINED WINDOWS_BUILD)
     set_target_properties(axon PROPERTIES SUFFIX ".exe")
+    if(ENABLE_SIMD)
+        set_target_properties(axon_optimized PROPERTIES SUFFIX ".exe")
+    endif()
 endif()
 
 # Install targets
 install(TARGETS axon DESTINATION bin)
+if(ENABLE_SIMD)
+    install(TARGETS axon_optimized DESTINATION bin)
+endif()
 
 # Install man pages if they exist
 install(FILES man/axon.1 DESTINATION share/man/man1 OPTIONAL)
 
 # Display status message
 message(STATUS "Axon: AES Encryption Tool")
+message(STATUS "SIMD optimizations: ${ENABLE_SIMD}")
 message(STATUS "Configuration complete")
 
 # Add packaging support for Windows

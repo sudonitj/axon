@@ -14,10 +14,13 @@
 #include "../include/crypto/chunked_file.h"
 #include "../include/crypto/key_expansion.h"
 #include "../include/crypto/confusion.h"
+#include "../include/common/optimization.h"
 
 #define STATE_SIZE 4
 
 int main(int argc, const char* argv[]) {
+    init_optimization_settings(&g_opt_settings);
+
     clock_t start_time = clock();
 
     if (argc != 5) {

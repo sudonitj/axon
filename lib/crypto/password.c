@@ -1,10 +1,12 @@
 #include "../include/common/failures.h"
 #include "../include/crypto/password.h"
+#include "../include/crypto/password_simd.h"
 #include "../include/common/config.h"
+#include "../include/common/optimization.h"
 #include <string.h>
 #include <stdlib.h>
 
-void chunker(char* key, int size, char* xor_res){
+void chunker_original(char* key, int size, char* xor_res){
     if (key == NULL || xor_res == NULL || size <= 0) return;
     if (*key == '\0') return;
 
@@ -21,9 +23,29 @@ void chunker(char* key, int size, char* xor_res){
 
     free(key_local);
     if (strlen(key) > size) {
-        chunker(key + size, size, xor_res);
+        chunker_original(key + size, size, xor_res);
     }
 }
+
+typedef void (*chunker_func_t)(char*, int, char*);
+
+static chunker_func_t optimal_chunker = NULL;
+
+void chunker(char* key, int size, char* xor_res) {
+    if (optimal_chunker == NULL) {
+        optimal_chunker = get_optimal_implementation(
+            (void*)chunker_original, 
+            (void*)chunker_sse2, 
+            (void*)chunker_avx, 
+            (void*)chunker_avx2,
+            &g_opt_settings);
+    }
+    
+    optimal_chunker(key, size, xor_res);
+}
+
+
+
 
 char* validate_password(const char* password){
     if(password == NULL) {

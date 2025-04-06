@@ -15,16 +15,64 @@
 #include "../include/crypto/key_expansion.h"
 #include "../include/crypto/confusion.h"
 #include "../include/common/optimization.h"
+#include "../include/crypto/diffusion_simd.h"
 
 #define STATE_SIZE 4
 
+void print_usage(const char* program_name) {
+    fprintf(stderr, "Usage: %s <source_file> <destination_file> <key> <e/d> [optimization_level]\n", program_name);
+    fprintf(stderr, "Optimization levels:\n");
+    fprintf(stderr, "  0 - No SIMD (scalar code)\n");
+    fprintf(stderr, "  1 - SSE2\n");
+    fprintf(stderr, "  2 - AVX\n");
+    fprintf(stderr, "  3 - AVX2\n");
+    fprintf(stderr, "  auto - Automatic selection based on CPU (default)\n");
+}
+
 int main(int argc, const char* argv[]) {
+    int forced_level = -1;
+    
+    if (argc < 5 || argc > 6) {
+        print_usage(argv[0]);
+        return EXIT_FAILURE;
+    }
+    
+    if (argc == 6) {
+        if (strcmp(argv[5], "0") == 0) {
+            forced_level = OPT_LEVEL_NONE;
+            printf("Forcing optimization level: NONE (scalar code)\n");
+        } else if (strcmp(argv[5], "1") == 0) {
+            forced_level = OPT_LEVEL_SSE2;
+            printf("Forcing optimization level: SSE2\n");
+        } else if (strcmp(argv[5], "2") == 0) {
+            forced_level = OPT_LEVEL_AVX;
+            printf("Forcing optimization level: AVX\n");
+        } else if (strcmp(argv[5], "3") == 0) {
+            forced_level = OPT_LEVEL_AVX2;
+            printf("Forcing optimization level: AVX2\n");
+        } else if (strcmp(argv[5], "auto") == 0) {
+            forced_level = -1;
+            printf("Using automatic optimization level selection\n");
+        } else {
+            fprintf(stderr, "Invalid optimization level: %s\n", argv[5]);
+            print_usage(argv[0]);
+            return EXIT_FAILURE;
+        }
+    }
+
     init_optimization_settings(&g_opt_settings);
+    
+    if (forced_level >= 0) {
+        g_opt_settings.current_level = forced_level;
+        printf("Optimization level overridden to: %d\n", forced_level);
+    }
+    
+    init_diffusion_simd();
 
     clock_t start_time = clock();
 
-    if (argc != 5) {
-        fprintf(stderr, "Usage: %s <source_file> <destination_file> <key> <e/d>\n", argv[0]);
+    if (argc != 5 && argc != 6) {
+        print_usage(argv[0]);
         return EXIT_FAILURE;
     }
 

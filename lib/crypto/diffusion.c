@@ -3,6 +3,7 @@
 #include "../../include/common/config.h"
 #include <stdio.h>
 #include <stdint.h>
+#include "../../include/crypto/diffusion_simd.h"
 
 char multiply_by_2(uint8_t byte) {
     return (byte << 1) ^ ((byte & 0x80) ? 0x1b : 0);
@@ -33,14 +34,13 @@ char multiply_by_14(char byte) {
 // | 1 1 2 3 |
 // | 3 1 1 2 |
 
-void mix_columns(char** state){
+void mix_columns_original(char** state){
     char temp[STATE_SIZE][STATE_SIZE];
     for (int i = 0; i < STATE_SIZE; i++) {
         for (size_t j = 0; j < STATE_SIZE; j++){
             temp[i][j] = state[i][j];
         }
     }
-
     for (int j = 0; j < STATE_SIZE; j++) {
         state[0][j] = (multiply_by_2(temp[0][j]) ^ multiply_by_3(temp[1][j]) ^ temp[2][j] ^ temp[3][j]);
         
@@ -50,6 +50,10 @@ void mix_columns(char** state){
             
         state[3][j] = (multiply_by_3(temp[0][j]) ^ temp[1][j] ^ temp[2][j] ^ multiply_by_2(temp[3][j]));
     }
+}
+
+void mix_columns(char** state){
+    mix_columns_simd(state);
 }
 
 void shift_rows(char** state){

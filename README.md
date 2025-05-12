@@ -4,6 +4,7 @@ A high-performance, secure file encryption and decryption tool using AES-128.
 
   <img src="assets/logo.jpg" alt="Axon Logo" width="150">
 
+ > To understand the underlying algorithm checkout the [Blog](https://rishi2220.hashnode.dev/bits-of-trust-the-elegance-of-aes) here.
 
 ## Table of Contents
 
